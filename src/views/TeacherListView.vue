@@ -48,7 +48,18 @@ onBeforeRouteUpdate((to, from, next) => {
 
 <template>
     <div>
-        <h1 class="text-center uppercase ">All teachers</h1>
+        <h1 class="text-center uppercase ">All teachers</h1><br/>
+        <form class="flex flex-col items-center" @submit.prevent="sendTeacherForm">
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-password" type="text" placeholder="Input teacher" v-model="teacherimgLink">
+                    <p class="text-gray-600 text-xs italic">Search Teacher</p>
+                </div>
+            </div>
+        </form>
+
         <hr class="my-12 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
         <main class="flex flex-col items-center">
             <TeacherCard v-for="teacher in teachers" :key="teacher.id" :teacher="teacher"></TeacherCard>

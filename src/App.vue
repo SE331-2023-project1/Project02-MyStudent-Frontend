@@ -27,10 +27,7 @@ const { message } = storeToRefs(store)
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Student
             </a></RouterLink>
-          <RouterLink :to="{ name: 'AddStudent' }"><a
-              class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
-              Register
-            </a></RouterLink>
+          
           <RouterLink :to="{ name: 'TeacherList' }"><a
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Teacher
@@ -39,6 +36,23 @@ const { message } = storeToRefs(store)
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Add Teacher
             </a></RouterLink>
+            <RouterLink :to="{ name: 'AddFeed' }"><a
+              class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+              Feed
+            </a></RouterLink>
+            <!-- <RouterLink :to="{ name: 'AddStudent' }"><a
+              class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+              Register
+            </a></RouterLink> -->
+            <RouterLink :to="{ name: 'AddStudent' }"><a style="padding-left:65%"
+              class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+              Register
+            </a></RouterLink>
+           <RouterLink :to="{ name: 'Login' }"><a style="padding-left:2%; padding-right: 2%;"
+              class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+              Login
+            </a></RouterLink>
+            <img class="block mt-4 lg:inline-block lg:mt-0" width="40" src="https://e7.pngegg.com/pngimages/884/512/png-clipart-person-shadow-computer-icons-person-symbol-meridian-energy-group-inc-person-icon-145444-bryan-le-graphy-miscellaneous-silhouette.png">
         </div>
         
       </div>

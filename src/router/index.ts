@@ -12,6 +12,8 @@ import TeacherLayoutView from '@/views/TeacherLayoutView.vue'
 import TeacherDetailView from '@/views/TeacherDetailView.vue'
 import StudentAddForm from '@/views/StudentAddForm.vue'
 import TeacherAddForm from '@/views/TeacherAddForm.vue'
+import FeedAddForm from '@/views/FeedAddForm.vue'
+import UserLoginForm from '@/views/UserLoginForm.vue'
 
 import NProgress from 'nprogress'
 import EventService from '@/services/EventService'
@@ -38,6 +40,16 @@ const router = createRouter({
       path: '/AddTeacher',
       name: 'AddTeacher',
       component: TeacherAddForm,
+    },
+    {
+      path: '/AddFeed',
+      name: 'AddFeed',
+      component: FeedAddForm,
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: UserLoginForm,
     },
     {
       path: '/TeacherList',
