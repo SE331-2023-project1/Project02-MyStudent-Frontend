@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import type { StudentType } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:3004',
+    baseURL: 'http://localhost:8080',
     withCredentials: false,
     headers: {
         Accept: 'application/json',
@@ -13,10 +13,10 @@ const apiClient: AxiosInstance = axios.create({
 
 export default {
     getEvent(perPage: number, page: number): Promise<AxiosResponse<StudentType[]>> {
-        return apiClient.get<StudentType[]>('/events?_limit=' + perPage + '&_page=' + page)
+        return apiClient.get<StudentType[]>('/users?_limit=' + perPage + '&_page=' + page)
     },
     getEventById(id: number): Promise<AxiosResponse<StudentType>>{
-        return apiClient.get<StudentType>('events/' + id.toString())
+        return apiClient.get<StudentType>('users/' + id.toString())
     },
     getTeacher(perPage: number, page: number): Promise<AxiosResponse<StudentType[]>> {
         return apiClient.get<StudentType[]>('/teachers?_limit=' + perPage + '&_page=' + page)
@@ -25,6 +25,6 @@ export default {
         return apiClient.get<StudentType>('teachers/' + id.toString())
     },
     postStudent(id: number): Promise<AxiosResponse<StudentType>>{
-        return apiClient.get<StudentType>('events/' + id.toString())
+        return apiClient.get<StudentType>('users/' + id.toString())
     },
 }
