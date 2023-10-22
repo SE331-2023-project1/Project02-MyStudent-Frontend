@@ -12,8 +12,8 @@ import { useMessageStore } from '../stores/message';
 
 const name = ref('')
 const surname = ref('')
-const studentId = ref('')
-const imgLink = ref('')
+const studentID = ref('')
+const image = ref('')
 const department = ref('')
 // const teacherName = ref('')
 // const teacherSurname = ref('')
@@ -27,24 +27,20 @@ function sendStudentForm(this: any) {
 
     axios({
         method: 'POST',
-        url: 'http://localhost:3004/events',
+        url: 'http://localhost:8080/users',
         data: {
-            id: id.value,
-            studentId: studentId.value,
+            username: studentID.value,
+            studentID: studentID.value,
             password: password.value,
             name: name.value,
             surname: surname.value,
-            imgLink: imgLink.value,
+            image: image.value,
             department: department.value,
-            // course: course.value,
-            // teacherName: teacherName.value,
-            // teacherSurname: teacherSurname.value,
-            // teacherimgLink: teacherimgLink.value,
-            // comment: comment.value
+            
         }
     })
 
-    store.updateMesage("A new student has been added to the list")
+    store.updateMesage("Register Complete")
 
     setTimeout(() => {
         store.resetMessage()
@@ -84,7 +80,7 @@ function sendStudentForm(this: any) {
                 </label>
                 <input
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-password" type="text" placeholder="Input student ID" v-model="studentId">
+                    id="grid-password" type="text" placeholder="Input student ID" v-model="studentID">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -94,7 +90,7 @@ function sendStudentForm(this: any) {
                 </label>
                 <input
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-password" type="text" placeholder="Input password" v-model="password">
+                    id="grid-password" type="password" placeholder="Input password" v-model="password">
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
@@ -115,7 +111,7 @@ function sendStudentForm(this: any) {
                 </label>
                 <input
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-password" type="text" placeholder="Input image link" v-model="imgLink">
+                    id="grid-password" type="text" placeholder="Input image link" v-model="image">
                 <p class="text-gray-600 text-xs italic">Input the URL only</p>
             </div>
         </div>
