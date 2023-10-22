@@ -5,17 +5,17 @@
             
             <li class="flex justify-between gap-x-96 py-5">
                 <div class="flex min-w-0 gap-x-4">
-                    <img class="overflow-hidden h-24 w-24 flex-none rounded-full bg-gray-50" :src="event?.imgLink" alt="" />
+                    <img class="overflow-hidden h-24 w-24 flex-none rounded-full bg-gray-50" :src="event?.img" alt="" />
                     <div class="min-w-0 flex-auto">
                         
                         <p class="text-sm font-semibold leading-6 text-gray-900 pt-3 pl-4 ml-8">{{ event?.name + " " + event?.surname}}</p>
-                        <p class="mt-1 truncate text-xs leading-5 text-gray-500 pl-4 ml-8">CMU</p>
+                        <p class="mt-1 truncate text-xs leading-5 text-gray-500 pl-4 ml-8">{{ event?.department }}</p>
                     </div>
                 </div>
                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                     <p class="text-sm leading-6 text-gray-900">Student</p>
                     <p class="mt-1 text-xs leading-5 text-gray-500">
-                        {{ event?.studentId }}
+                        {{ event?.studentID }}
                     </p>
                     
                 </div>

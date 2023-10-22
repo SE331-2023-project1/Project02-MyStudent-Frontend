@@ -29,7 +29,7 @@ const { comment } = storeToRefs(store2)
     <div>
       <h1 class="text-base font-semibold leading-7 text-gray-900">Student Information</h1><br/>
       <div class="flex justify-center items-center">
-        <img :src="event.imgLink" class="w-80">
+        <img :src="event.img" class="w-80">
       </div>
 
       <div class="mt-6 border-t border-gray-100">
@@ -41,11 +41,11 @@ const { comment } = storeToRefs(store2)
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Student ID</dt>
-            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ event.studentId }}</dd>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ event.studentID }}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="text-sm font-medium leading-6 text-gray-900">Enrolled course</dt>
-            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ event.course }}</dd>
+            <dt class="text-sm font-medium leading-6 text-gray-900">Department</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ event.department }}</dd>
           </div>
         </dl>
       </div>

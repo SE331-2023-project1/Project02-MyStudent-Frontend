@@ -1,12 +1,16 @@
 export interface StudentType {
     id: number
-    studentId: string
+    studentID: string
     name: string
     surname: string
-    imgLink: string
+    img: string
     course: Array<string>
     teacherName: string
     teacherSurname: string
     teacherimgLink: string
     comment: string
+    reply: string
+    fileDesc: string
+    file: Blob
+    department: string
 }
