@@ -3,7 +3,7 @@ export interface StudentType {
     studentID: string
     name: string
     surname: string
-    img: string
+    image: string
     course: Array<string>
     teacherName: string
     teacherSurname: string

@@ -29,7 +29,7 @@ const { comment } = storeToRefs(store2)
     <div>
       <h1 class="text-base font-semibold leading-7 text-gray-900">Student Information</h1><br/>
       <div class="flex justify-center items-center">
-        <img :src="event.img" class="w-80">
+        <img :src="event.image" class="w-80">
       </div>
 
       <div class="mt-6 border-t border-gray-100">

@@ -5,7 +5,7 @@
             
             <li class="flex justify-between gap-x-96 py-5">
                 <div class="flex min-w-0 gap-x-4">
-                    <img class="overflow-hidden h-24 w-24 flex-none rounded-full bg-gray-50" :src="event?.img" alt="" />
+                    <img class="overflow-hidden h-24 w-24 flex-none rounded-full bg-gray-50" :src="event?.image" alt="" />
                     <div class="min-w-0 flex-auto">
                         
                         <p class="text-sm font-semibold leading-6 text-gray-900 pt-3 pl-4 ml-8">{{ event?.name + " " + event?.surname}}</p>
