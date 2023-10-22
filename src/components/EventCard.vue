@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
-                    <p class="text-sm leading-6 text-gray-900">Student</p>
+                    <p class="text-sm leading-6 text-gray-900">{{ event?.role }}</p>
                     <p class="mt-1 text-xs leading-5 text-gray-500">
                         {{ event?.studentID }}
                     </p>

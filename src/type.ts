@@ -13,4 +13,5 @@ export interface StudentType {
     fileDesc: string
     file: Blob
     department: string
+    role: String
 }
