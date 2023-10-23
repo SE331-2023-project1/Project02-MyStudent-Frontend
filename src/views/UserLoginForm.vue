@@ -9,18 +9,46 @@ import router from '@/router';
 import { onBeforeRouteUpdate } from 'vue-router';
 import { useEventStore } from '@/stores/event';
 import { useMessageStore } from '../stores/message';
-
-const teacherName = ref('')
-const teacherSurname = ref('')
-const teacherAcademicPosition = ref('')
-const teacherUsername = ref('')
-const postDesc = ref('')
-const postFile = ref('')
+import { useCommentStore } from '@/stores/comment';
+import { useRoleStore } from '@/stores/role';
 
 
 const id = ref('')
 
 const store = useMessageStore()
+const storeRole = useRoleStore()
+
+function changeRoleAdmin(){
+    storeRole.updateRole("admin")
+    const role = storeRole.role
+    console.log(role)
+}
+function changeRoleStudent(){
+    storeRole.updateRole("student")
+    const role = storeRole.role
+    console.log(role)
+    axios.get("http://localhost:8080/users/1")
+    .then(function (response) {
+    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
+    // teachers.value = response.data
+    console.log(response.data);
+    //Test
+    console.log(storeRole.name)
+  })
+}
+function changeRoleTeacher(){
+    storeRole.updateRole("teacher")
+    const role = storeRole.role
+    console.log(role)
+    axios.get("http://localhost:8080/teachers/1")
+    .then(function (response) {
+    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
+    // teachers.value = response.data
+    console.log(response.data);
+    //Test
+    console.log(storeRole.image)
+  })
+}
 
 function sendTeacherForm(this: any) {
 
@@ -28,12 +56,12 @@ function sendTeacherForm(this: any) {
         method: 'POST',
         url: 'http://localhost:8080/login',
         data: {
-            id: id.value,
-            teacherName: teacherName.value,
-            teacherSurname: teacherSurname.value,
-            teacherUsername: teacherSurname.value,
-            postDesc: postDesc.value,
-            postFile: postFile.value,
+            // id: id.value,
+            // teacherName: teacherName.value,
+            // teacherSurname: teacherSurname.value,
+            // teacherUsername: teacherSurname.value,
+            // postDesc: postDesc.value,
+            // postFile: postFile.value,
         
         }
     })
@@ -84,7 +112,21 @@ function sendTeacherForm(this: any) {
         
         
     </form>
-    
+    <div>
+        <h3 class= "w-full max-w-lg ml-40">Mock Role</h3>
+        <br/>
+    </div>
+    <div>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-10 mb-10" type="submit" @click="changeRoleAdmin">
+            Admin
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-8 mb-10" type="submit" @click="changeRoleTeacher">
+            Teacher
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-8 mb-10" type="submit" @click="changeRoleStudent">
+            Student
+        </button>
+    </div>
 </template>
 
 <style scoped></style>

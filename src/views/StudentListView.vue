@@ -8,6 +8,7 @@ import { computed, ref, watchEffect } from 'vue'
 import { AxiosResponse } from 'axios';
 import router from '@/router';
 import { onBeforeRouteUpdate } from 'vue-router';
+import { useRoleStore } from '@/stores/role';
 
 const events = ref<StudentType[]>([])
 
