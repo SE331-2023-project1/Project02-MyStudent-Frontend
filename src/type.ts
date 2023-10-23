@@ -5,13 +5,14 @@ export interface StudentType {
     surname: string
     image: string
     course: Array<string>
-    teacherName: string
-    teacherSurname: string
-    teacherimgLink: string
+    advisorName: string
+    advisorSurname: string
+    advisorimage: string
     comment: string
     reply: string
     fileDesc: string
     file: Blob
     department: string
     role: String
+    position: String
 }

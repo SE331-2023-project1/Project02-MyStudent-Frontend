@@ -6,6 +6,7 @@ import { useEventStore } from '@/stores/event'
 import { useCommentStore } from '@/stores/comment'
 import { RouterLink, RouterView } from 'vue-router'
 import { ref, type PropType } from 'vue';
+import axios from 'axios'
 
 const props = defineProps({
     event: {
@@ -19,6 +20,32 @@ const store2 = useCommentStore()
 const comment = ref("")
 
 function edit(){
+
+
+  axios({
+        method: 'POST',
+        url: 'http://localhost:8080/users',
+        data: {
+            username: studentID.value,
+            studentID: studentID.value,
+            password: password.value,
+            name: name.value,
+            surname: surname.value,
+            image: image.value,
+            department: department.value,
+            role: "student"
+        }
+    })
+
+    store.updateMesage("Register Complete")
+
+    setTimeout(() => {
+        store.resetMessage()
+    }, 5000)
+    router.push({
+        name: 'StudentList',
+    })
+
 router.push({ path: '/event/' + props.event?.id})
 store.updateMesage("Comment of " + " " + props.event?.studentId + ' has been updated ')
 
