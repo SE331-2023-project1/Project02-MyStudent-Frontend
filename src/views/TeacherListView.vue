@@ -5,9 +5,10 @@ import { useRouter } from 'vue-router';
 import type { StudentType } from '@/type';
 import EventService from '../services/EventService'
 import { computed, ref, watchEffect } from 'vue'
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import router from '@/router';
 import { onBeforeRouteUpdate } from 'vue-router';
+import { useCommentStore } from '@/stores/comment';
 
 const teachers = ref<StudentType[]>([])
 
@@ -23,6 +24,8 @@ const props = defineProps({
     }
 })
 
+const comment = ref("")
+const store = useCommentStore()
 
 EventService.getTeacher(10, props.page).then((response: AxiosResponse<StudentType[]>) => {
     teachers.value = response.data
@@ -44,17 +47,29 @@ onBeforeRouteUpdate((to, from, next) => {
     })
 })
 
+
+function searchTeacher() {
+    
+    axios.get(`http://localhost:8080/teachers/` + comment.value)
+    .then(function (response) {
+    // teachers.value = response.data
+    console.log(response.data);
+  })
+
+// localStorage.setItem("searchText",searchtxt)
+}
+
 </script>
 
 <template>
     <div>
         <h1 class="text-center uppercase ">All teachers</h1><br/>
-        <form class="flex flex-col items-center" @submit.prevent="sendTeacherForm">
+        <form class="flex flex-col items-center" @submit.prevent="searchTeacher">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="grid-password" type="text" placeholder="Input teacher" v-model="teacherimgLink">
+                        id="teacherSearch" type="text" placeholder="Input teacher" v-model="comment">
                     <p class="text-gray-600 text-xs italic">Search Teacher</p>
                 </div>
             </div>

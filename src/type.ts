@@ -7,7 +7,7 @@ export interface StudentType {
     course: Array<string>
     advisorName: string
     advisorSurname: string
-    advisorimage: string
+    advisorImage: string
     comment: string
     reply: string
     fileDesc: string
