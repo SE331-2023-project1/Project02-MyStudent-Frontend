@@ -28,13 +28,13 @@ function sendTeacherForm(this: any) {
         url: 'http://localhost:8080/users',
         data: {
             id: id.value,
-            teacherName: teacherName.value,
-            teacherSurname: teacherSurname.value,
-            teacherimgLink: teacherimgLink.value,
-            teacherAcademicPosition:  teacherAcademicPosition.value,
-            teacherDepartment:  teacherDepartment.value,
-            teacherUsername: teacherSurname.value,
-            teacherPassword: teacherPassword.value
+            name: teacherName.value,
+            surname: teacherSurname.value,
+            image: teacherimgLink.value,
+            position:  teacherAcademicPosition.value,
+            department:  teacherDepartment.value,
+            username: teacherSurname.value,
+            password: teacherPassword.value
         }
     })
 

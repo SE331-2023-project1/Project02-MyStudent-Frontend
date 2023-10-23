@@ -36,7 +36,7 @@ function sendStudentForm(this: any) {
             surname: surname.value,
             image: image.value,
             department: department.value,
-            
+            role: "student"
         }
     })
 

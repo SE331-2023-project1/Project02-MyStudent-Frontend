@@ -26,7 +26,7 @@ function sendTeacherForm(this: any) {
 
     axios({
         method: 'POST',
-        url: 'http://localhost:3004/teachers',
+        url: 'http://localhost:8080/login',
         data: {
             id: id.value,
             teacherName: teacherName.value,

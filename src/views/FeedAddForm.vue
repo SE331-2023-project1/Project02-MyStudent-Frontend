@@ -10,10 +10,7 @@ import { onBeforeRouteUpdate } from 'vue-router';
 import { useEventStore } from '@/stores/event';
 import { useMessageStore } from '../stores/message';
 
-const teacherName = ref('')
-const teacherSurname = ref('')
-const teacherAcademicPosition = ref('')
-const teacherUsername = ref('')
+const advisor = ref('')
 const postDesc = ref('')
 const postFile = ref('')
 
@@ -26,26 +23,21 @@ function sendTeacherForm(this: any) {
 
     axios({
         method: 'POST',
-        url: 'http://localhost:3004/teachers',
+        url: 'http://localhost:8080/users',
         data: {
             id: id.value,
-            teacherName: teacherName.value,
-            teacherSurname: teacherSurname.value,
-            teacherUsername: teacherSurname.value,
-            postDesc: postDesc.value,
-            postFile: postFile.value,
+            advisor: advisor.value,
+            fileDesc: postDesc.value,
+            // file: postFile.value,
         
         }
     })
 
-    store.updateMesage("A new teacher has been added to the list")
+    store.updateMesage("A new annoucement is added")
 
     setTimeout(() => {
         store.resetMessage()
     }, 5000)
-    router.push({
-        name: 'TeacherList',
-    })
 }
 
 </script>
@@ -53,6 +45,18 @@ function sendTeacherForm(this: any) {
 <template>
     <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
         <div><h1>Post annoucement</h1></div><br/>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-link">
+                    Teacher name
+                </label>
+                <input
+                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-password" type="text" placeholder="Input name" v-model="advisor">
+                <p class="text-gray-600 text-xs italic">Input your name</p>
+            </div>
+        </div>
+
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-course">
@@ -71,9 +75,8 @@ function sendTeacherForm(this: any) {
                     Upload file
                 </label>
                 <input
-                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-password" type="text" placeholder="Input image link" v-model="postFile">
-                <p class="text-gray-600 text-xs italic">Input the URL only</p>
+                    type="file">
+                <p class="text-gray-600 text-xs italic">Input the file only</p>
             </div>
         </div>
         
