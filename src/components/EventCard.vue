@@ -3,7 +3,7 @@
 
         <ul role="list" class="divide-y divide-gray-100">
             
-            <li class="flex justify-between gap-x-96 py-5">
+            <li class="flex justify-between gap-x-96 py-5 border-black-10">
                 <div class="flex min-w-0 gap-x-4">
                     <img class="overflow-hidden h-24 w-24 flex-none rounded-full bg-gray-50" :src="event?.image" alt="" />
                     <div class="min-w-0 flex-auto">
@@ -39,4 +39,8 @@ const props = defineProps({
 </script>
 
 <style scoped>
+li {
+    border-block-start: 1px rgb(193, 227, 254) solid;
+    border-block-end: 1px rgb(193, 227, 254) solid;
+  }
 </style>

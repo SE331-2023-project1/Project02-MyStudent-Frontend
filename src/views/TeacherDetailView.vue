@@ -150,4 +150,12 @@ function updateTeacherForm(){
     </div>
 </template>
 
-
+<style scoped>
+dt {
+  background: rgb(206, 226, 248);
+    
+  }
+  dd {
+    background: rgb(239, 247, 255);
+  }
+</style>

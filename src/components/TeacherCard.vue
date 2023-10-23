@@ -39,5 +39,8 @@ const props = defineProps({
 </script>
 
 <style scoped>
-
+li {
+    border-block-start: 1px rgb(193, 227, 254) solid;
+    border-block-end: 1px rgb(193, 227, 254) solid;
+  }
 </style>
