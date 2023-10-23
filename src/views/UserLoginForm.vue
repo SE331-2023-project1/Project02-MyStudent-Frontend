@@ -78,7 +78,7 @@ function sendTeacherForm(this: any) {
 </script>
 
 <template>
-    <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
+    <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm" style="margin-left: 38.5%;">
         <div><h1>Login</h1></div><br/>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
@@ -108,14 +108,13 @@ function sendTeacherForm(this: any) {
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-48 mb-10" type="submit">
             Log in
         </button>
-        
-        
     </form>
-    <div>
+
+    <div style="margin-left: 40%; margin-top: 5%;">
         <h3 class= "w-full max-w-lg ml-40">Mock Role</h3>
         <br/>
     </div>
-    <div>
+    <div style="margin-left: 40%;">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-10 mb-10" type="submit" @click="changeRoleAdmin">
             Admin
         </button>

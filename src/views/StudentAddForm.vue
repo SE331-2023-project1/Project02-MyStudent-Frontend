@@ -53,7 +53,7 @@ function sendStudentForm(this: any) {
 </script>
 
 <template>
-    <form class="w-full max-w-lg ml-28" @submit.prevent="sendStudentForm">
+    <form class="w-full max-w-lg ml-28" @submit.prevent="sendStudentForm" style="margin-left: 37%;">
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
