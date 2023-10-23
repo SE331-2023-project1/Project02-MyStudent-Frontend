@@ -25,6 +25,7 @@ export const useRoleStore = defineStore('role', {
             this.position = position
             this.department = department
             this.image = image
+            this.studentID = studentID
         },
         resetRole() {
             this.role = ''

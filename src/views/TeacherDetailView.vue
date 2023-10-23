@@ -5,10 +5,11 @@ import type { StudentType } from '@/type'
 import { useRouter } from 'vue-router'
 import { RouterLink, RouterView } from 'vue-router'
 
-import type { PropType } from 'vue';
+import { PropType, ref } from 'vue';
 import { useCommentStore } from '@/stores/comment';
 import { storeToRefs } from 'pinia';
 import { useRoleStore } from '../stores/role';
+import axios from 'axios';
 
 defineProps({
     teacher: {
@@ -16,9 +17,28 @@ defineProps({
         require: true
     }
 })
+const id = ref('')
+const name = ref('')
+const surname = ref('')
+const position = ref('')
+const department = ref('')
+const studentID = ref('')
 const store2 = useCommentStore()
 const profile = useRoleStore()
 const { comment } = storeToRefs(store2)
+
+function updateTeacherForm(){
+    axios({
+        method: 'PUT',
+        url: 'http://localhost:8080/teachers/'+profile.$id,
+        data: {
+            studentID: studentID.value,
+            name: name.value,
+            surname: surname.value,
+            department: department.value,
+        }
+    })
+}
 </script>
 
 <template>
@@ -53,7 +73,7 @@ const { comment } = storeToRefs(store2)
                                         <input v-if="profile.role =='admin'"
                                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                             id="grid-password" type="text" placeholder="Input Student ID"
-                                            v-model="teacherPassword">
+                                            v-model="studentID">
                                     </div>
                                     <button v-if="profile.role =='admin'"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-48 mb-10"
@@ -81,7 +101,7 @@ const { comment } = storeToRefs(store2)
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                             <dt class="text-sm font-medium leading-6 text-gray-900"></dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                                <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
+                                <form class="w-full max-w-lg ml-28" @submit.prevent="updateTeacherForm">
                                     <div class="flex flex-wrap -mx-3 mb-0">
                                         <div class="w-96 px-3">
                                             <input

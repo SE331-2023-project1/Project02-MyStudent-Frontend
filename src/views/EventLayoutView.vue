@@ -15,9 +15,11 @@ import { useRouter } from 'vue-router'
 import { useEventStore } from '@/stores/event'
 import { storeToRefs } from 'pinia'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import { useRoleStore } from '../stores/role'
 
 const store = useEventStore()
 const event = storeToRefs(store).event
+const profile = useRoleStore()
 const id = ref(event?.value?.id)
 const router = useRouter()
 
@@ -44,7 +46,7 @@ const router = useRouter()
         </div>
       </div>
       <div class="mt-5 flex lg:ml-4 lg:mt-0">
-        <span class="hidden sm:block">
+        <span class="hidden sm:block" v-if="profile.role=='teacher'">
           <Router-link :to="{ name: 'event-edit', params: { id } }">
             <button type="button"
             class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
