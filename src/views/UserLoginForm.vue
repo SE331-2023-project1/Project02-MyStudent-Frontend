@@ -22,6 +22,11 @@ function changeRoleAdmin(){
     storeRole.updateRole("admin")
     const role = storeRole.role
     console.log(role)
+    axios.get("http://localhost:8080/users/10")
+    .then(function (response) {
+    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
+    console.log(response.data);
+  })
 }
 function changeRoleStudent(){
     storeRole.updateRole("student")
@@ -30,10 +35,7 @@ function changeRoleStudent(){
     axios.get("http://localhost:8080/users/1")
     .then(function (response) {
     storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
-    // teachers.value = response.data
     console.log(response.data);
-    //Test
-    console.log(storeRole.name)
   })
 }
 function changeRoleTeacher(){
@@ -43,10 +45,7 @@ function changeRoleTeacher(){
     axios.get("http://localhost:8080/teachers/1")
     .then(function (response) {
     storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
-    // teachers.value = response.data
     console.log(response.data);
-    //Test
-    console.log(storeRole.image)
   })
 }
 
@@ -66,13 +65,13 @@ function sendTeacherForm(this: any) {
         }
     })
 
-    store.updateMesage("A new teacher has been added to the list")
+    // store.updateMesage("")
 
     setTimeout(() => {
         store.resetMessage()
     }, 5000)
     router.push({
-        name: 'TeacherList',
+        name: '',
     })
 }
 

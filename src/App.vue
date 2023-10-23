@@ -2,8 +2,11 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useMessageStore } from './stores/message';
 import { storeToRefs } from 'pinia';
+import { useRoleStore } from './stores/role';
 const store = useMessageStore()
+const profile = useRoleStore()
 const { message } = storeToRefs(store)
+
 </script>
 
 <template>
@@ -32,27 +35,38 @@ const { message } = storeToRefs(store)
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Teacher
             </a></RouterLink>
-            <RouterLink :to="{ name: 'AddTeacher' }"><a
+            <RouterLink 
+            v-if="profile.role == 'admin'"
+            :to="{ name: 'AddTeacher' }"><a
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Add Teacher
             </a></RouterLink>
-            <RouterLink :to="{ name: 'AddFeed' }"><a
+            <RouterLink 
+            
+            :to="{ name: 'AddFeed' }"><a
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Feed
             </a></RouterLink>
-            <!-- <RouterLink :to="{ name: 'AddStudent' }"><a
-              class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
-              Register
-            </a></RouterLink> -->
-            <RouterLink :to="{ name: 'AddStudent' }"><a style="padding-left:65%"
+            <RouterLink 
+            v-if="profile.role == ''"
+            :to="{ name: 'AddStudent' }"><a style="padding-left:65%"
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Register
             </a></RouterLink>
-           <RouterLink :to="{ name: 'Login' }"><a style="padding-left:2%; padding-right: 2%;"
+            
+           <RouterLink 
+           v-if="profile.role == ''"
+           :to="{ name: 'Login' }"><a style="padding-left:2%; padding-right: 2%;"
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Login
             </a></RouterLink>
-            <img class="block mt-4 lg:inline-block lg:mt-0" width="40" src="https://e7.pngegg.com/pngimages/884/512/png-clipart-person-shadow-computer-icons-person-symbol-meridian-energy-group-inc-person-icon-145444-bryan-le-graphy-miscellaneous-silhouette.png">
+            <span v-else>
+              <span 
+              style="margin-left:65%"
+              class="text-blue-200">{{ profile.role + " : " + profile.name}}</span>
+              <img style="margin-left:6%"
+            class="block mt-4 lg:inline-block lg:mt-0" width="40" :src="profile.image"></span>
+            
         </div>
         
       </div>
