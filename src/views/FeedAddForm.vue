@@ -19,20 +19,18 @@ const id = ref('')
 
 const store = useMessageStore()
 
-function sendTeacherForm(this: any) {
 
-    axios({
-        method: 'POST',
-        url: 'http://localhost:8080/users',
-        data: {
-            id: id.value,
-            advisor: advisor.value,
-            fileDesc: postDesc.value,
-            // file: postFile.value,
-        
+function sendFeed(this: any) {
+    let formData = new FormData();
+    // formData.append("file", file);
+
+    axios.post('http://localhost:8080/uploadFile',
+        formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
         }
-    })
-
+    )
     store.updateMesage("A new annoucement is added")
 
     setTimeout(() => {
@@ -43,7 +41,7 @@ function sendTeacherForm(this: any) {
 </script>
 
 <template>
-    <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
+    <form class="w-full max-w-lg ml-28" @submit.prevent="sendFeed">
         <div><h1>Post annoucement</h1></div><br/>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full px-3">
@@ -75,6 +73,7 @@ function sendTeacherForm(this: any) {
                     Upload file
                 </label>
                 <input
+                    id="file"
                     type="file">
                 <p class="text-gray-600 text-xs italic">Input the file only</p>
             </div>
