@@ -8,6 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import type { PropType } from 'vue';
 import { useCommentStore } from '@/stores/comment';
 import { storeToRefs } from 'pinia';
+import { useRoleStore } from '../stores/role';
 
 defineProps({
     teacher: {
@@ -16,6 +17,7 @@ defineProps({
     }
 })
 const store2 = useCommentStore()
+const profile = useRoleStore()
 const { comment } = storeToRefs(store2)
 </script>
 
@@ -28,18 +30,19 @@ const { comment } = storeToRefs(store2)
                 <h1 class="text-base font-semibold leading-7 text-gray-900">Teacher Profile</h1><br />
 
             </div>
-            <div class="flex justify-center items-center"> <img :src="teacher.teacherimgLink" class="w-80"></div>
+            <div class="flex justify-center items-center"> <img :src="teacher.image" class="w-80"></div>
             <div class="mt-6 border-t border-gray-100">
                 <dl class="divide-y divide-gray-100">
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ teacher.teacherName }} {{
-                            teacher.teacherSurname }}</dd>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            {{ teacher.position }}
+                            {{ teacher.name }} {{
+                                teacher.surname }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Department</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ teacher.teacherName }} {{
-                            teacher.teacherSurname }}</dd>
+                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ teacher.department }}</dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Advisee
@@ -47,67 +50,81 @@ const { comment } = storeToRefs(store2)
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
 
-                                        <input
+                                        <input v-if="profile.role =='admin'"
                                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                             id="grid-password" type="text" placeholder="Input Student ID"
                                             v-model="teacherPassword">
                                     </div>
-                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-48 mb-10"
-                                type="submit">
-                                Add
-                            </button>
+                                    <button v-if="profile.role =='admin'"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-48 mb-10"
+                                        type="submit">
+                                        Add
+                                    </button>
                                 </div>
                             </form>
 
                         </dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            <ul>{{ teacher.teacherName }} </ul>
-                            <ul>{{ teacher.teacherName }} </ul>
-                            <ul>{{ teacher.teacherName }} </ul>
+                            <ul v-if="profile.advisee == null" style="color: rgb(255, 80, 80);"> There is no advisee yet </ul>
+                            <ul v-else>{{ profile.advisee }} </ul>
                         </dd>
                     </div>
                 </dl>
             </div>
-            <div class="">
+            <div class="" v-if="profile.role == 'admin'">
                 <h1 class="text-base font-semibold leading-7 text-gray-900">Edit Profile</h1><br />
 
-            </div>
-          
-            <div class="mt-6 border-t border-gray-100">
-                <dl class="divide-y divide-gray-100">
-                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
-                                <div class="flex flex-wrap -mx-3 mb-0">
-                                    <div class="w-96 px-3">
-                                        <input
-                                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-password" type="text" placeholder="Input New Name"
-                                            v-model="teacherPassword">
-                                    </div>
-                                </div>
-                            </form>
-                        </dd>
-                    </div>
 
-                    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt class="text-sm font-medium leading-6 text-gray-900">Department</dt>
-                        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
-                                <div class="flex flex-wrap -mx-3 mb-0">
-                                    <div class="w-96 px-3">
-                                        <input
-                                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                            id="grid-password" type="text" placeholder="Input New Department"
-                                            v-model="teacherPassword">
+
+                <div class="mt-6 border-t border-gray-100">
+                    <dl class="divide-y divide-gray-100">
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt class="text-sm font-medium leading-6 text-gray-900"></dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
+                                    <div class="flex flex-wrap -mx-3 mb-0">
+                                        <div class="w-96 px-3">
+                                            <input
+                                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-password" type="text" placeholder="Input New Position"
+                                                v-model="teacherPosition">
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                    <div class="flex flex-wrap -mx-3 mb-0">
+                                        <div class="w-96 px-3">
+                                            <input
+                                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-password" type="text" placeholder="Input New First Name"
+                                                v-model="teacherName">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-0">
+                                        <div class="w-96 px-3">
+                                            <input
+                                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-password" type="text" placeholder="Input New Last Name"
+                                                v-model="teacherSurname">
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-wrap -mx-3 mb-0">
+                                        <div class="w-96 px-3">
+                                            <input
+                                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                id="grid-password" type="text" placeholder="Input New Department"
+                                                v-model="teacherDepartment">
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded mr-32 mb-10 mt-10"
+                                        type="submit">
+                                        Update
+                                    </button>
+                                </form>
+
                             </dd>
-                    </div>
-                   
-                </dl>
+                        </div>
+                    </dl>
+                </div>
             </div>
         </div>
     </div>
