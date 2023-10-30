@@ -17,9 +17,17 @@ defineProps({
         require: true
     }
 })
+
+const teacherName = ref('')
+const teacherSurname = ref('')
+const teacherimgLink = ref('')
+const teacherAcademicPosition = ref('')
+const teacherUsername = ref('')
+const teacherPassword = ref('')
+const teacherDepartment = ref('')
 const id = ref('')
-const name = ref('')
-const surname = ref('')
+
+
 const position = ref('')
 const department = ref('')
 const studentID = ref('')
@@ -27,15 +35,18 @@ const store2 = useCommentStore()
 const profile = useRoleStore()
 const { comment } = storeToRefs(store2)
 
-function updateTeacherForm(){
+function updateTeacherForm(this: any) {
+    const testto = window.location.pathname.split("/").pop()
     axios({
         method: 'PUT',
-        url: 'http://localhost:8080/teachers/'+profile.$id,
+        url: 'http://localhost:8080/teachers/' + testto,
         data: {
-            studentID: studentID.value,
-            name: name.value,
-            surname: surname.value,
-            department: department.value,
+            id: id.value,
+            name: teacherName.value,
+            surname: teacherSurname.value,
+            image: teacherimgLink.value,
+            position: teacherAcademicPosition.value,
+            department: teacherDepartment.value,
         }
     })
 }
@@ -66,16 +77,16 @@ function updateTeacherForm(){
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-medium leading-6 text-gray-900">Advisee
-                            <form class="w-full max-w-lg ml-28" @submit.prevent="sendTeacherForm">
+                            <form class="w-full max-w-lg ml-28" @submit.prevent="updateTeacherForm">
                                 <div class="flex flex-wrap -mx-3 mb-6">
                                     <div class="w-full px-3">
 
-                                        <input v-if="profile.role =='admin'"
+                                        <input v-if="profile.role == 'admin'"
                                             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                             id="grid-password" type="text" placeholder="Input Student ID"
                                             v-model="studentID">
                                     </div>
-                                    <button v-if="profile.role =='admin'"
+                                    <button v-if="profile.role == 'admin'"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-48 mb-10"
                                         type="submit">
                                         Add
@@ -85,7 +96,8 @@ function updateTeacherForm(){
 
                         </dt>
                         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            <ul v-if="profile.advisee == null" style="color: rgb(255, 80, 80);"> There is no advisee yet </ul>
+                            <ul v-if="profile.advisee == null" style="color: rgb(255, 80, 80);"> There is no advisee yet
+                            </ul>
                             <ul v-else>{{ profile.advisee }} </ul>
                         </dd>
                     </div>
@@ -107,7 +119,7 @@ function updateTeacherForm(){
                                             <input
                                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 mt-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                 id="grid-password" type="text" placeholder="Input New Position"
-                                                v-model="teacherPosition">
+                                                v-model="teacherAcademicPosition">
                                         </div>
                                     </div>
                                     <div class="flex flex-wrap -mx-3 mb-0">

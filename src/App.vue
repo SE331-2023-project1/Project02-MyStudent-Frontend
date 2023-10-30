@@ -22,7 +22,7 @@ const { message } = storeToRefs(store)
         <span class="font-semibold text-xl tracking-tight">MyStudent</span>
       </div>
       <div class="block lg:hidden">
-       
+
       </div>
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div class="text-md lg:flex-grow">
@@ -30,45 +30,41 @@ const { message } = storeToRefs(store)
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Student
             </a></RouterLink>
-          
+
           <RouterLink :to="{ name: 'TeacherList' }"><a
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Teacher
             </a></RouterLink>
-            <RouterLink 
-            v-if="profile.role == 'admin'"
-            :to="{ name: 'AddTeacher' }"><a
+          <RouterLink v-if="profile.role == 'admin'" :to="{ name: 'AddTeacher' }"><a
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Add Teacher
             </a></RouterLink>
-            <RouterLink 
-            
-            :to="{ name: 'AddFeed' }"><a
+          <RouterLink v-if="profile.role != 'admin'" :to="{ name: 'AddFeed' }"><a
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Feed
             </a></RouterLink>
-            <RouterLink 
-            v-if="profile.role == ''"
-            :to="{ name: 'AddStudent' }"><a style="padding-left:65%"
+          <RouterLink v-if="profile.role == ''" :to="{ name: 'AddStudent' }"><a style="padding-left:65%"
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Register
             </a></RouterLink>
-            
-           <RouterLink 
-           v-if="profile.role == ''"
-           :to="{ name: 'Login' }"><a style="padding-left:2%; padding-right: 2%;"
+
+          <RouterLink v-if="profile.role == ''" :to="{ name: 'Login' }"><a style="padding-left:2%; padding-right: 2%;"
               class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Login
             </a></RouterLink>
-            <span v-else>
-              <span 
-              style="margin-left:65%"
-              class="text-blue-200">{{ profile.role + " : " + profile.name}}</span>
-              <img style="margin-left:6%"
-            class="block mt-4 lg:inline-block lg:mt-0" width="40" :src="profile.image"></span>
             
+          <span v-else>
+            <span style="margin-left:65%" class="text-blue-200">{{ profile.role + " : " + profile.name }}</span>
+            
+            <img style="margin-left:6%" class="block mt-4 lg:inline-block lg:mt-0" width="40" :src="profile.image"> 
+            <RouterLink :to="{ name: 'AddStudent' }"><a style="margin-left: 1%; color: bisque;"
+              class="">
+              Profile
+            </a></RouterLink>
+          </span>
+         
         </div>
-        
+
       </div>
     </nav>
 
@@ -135,4 +131,5 @@ const { message } = storeToRefs(store)
 
 /* h4 {
   font-size: 20px;
-} */</style>
+} */
+</style>

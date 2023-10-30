@@ -52,8 +52,9 @@ function searchTeacher() {
     
     axios.get(`http://localhost:8080/teachers/` + comment.value)
     .then(function (response) {
-    // teachers.value = response.data
+    teachers.value = response.data
     console.log(response.data);
+    const fetchDone = true
   })
 
 // localStorage.setItem("searchText",searchtxt)
@@ -79,6 +80,7 @@ function searchTeacher() {
         <main class="flex flex-col items-center">
             <TeacherCard v-for="teacher in teachers" :key="teacher.id" :teacher="teacher"></TeacherCard>
         </main>
+        
     </div>
 </template>
 
