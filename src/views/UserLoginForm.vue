@@ -24,7 +24,7 @@ function changeRoleAdmin(){
     console.log(role)
     axios.get("http://localhost:8080/users/10")
     .then(function (response) {
-    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
+    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image,response.data.comment,response.data.reply)
     console.log(response.data);
   })
 }
@@ -34,7 +34,7 @@ function changeRoleStudent(){
     console.log(role)
     axios.get("http://localhost:8080/users/1")
     .then(function (response) {
-    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
+    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image,response.data.comment,response.data.reply)
     console.log(response.data);
   })
 }
@@ -44,7 +44,7 @@ function changeRoleTeacher(){
     console.log(role)
     axios.get("http://localhost:8080/teachers/1")
     .then(function (response) {
-    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image)
+    storeRole.updateProfile(response.data.name,response.data.surname,response.data.position,response.data.studentID,response.data.department,response.data.image,response.data.comment,response.data.reply)
     console.log(response.data);
   })
 }

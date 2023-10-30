@@ -7,7 +7,9 @@ export const useRoleStore = defineStore('role', {
         position: '' as string,
         studentID: '' as string,
         department: '' as string,
-        image: '' as string
+        image: '' as string,
+        comment: '' as string,
+        reply: '' as string
     }),
     actions: {
         updateRole(role: string) {
@@ -19,13 +21,17 @@ export const useRoleStore = defineStore('role', {
             position: string,
             studentID: string,
             department: string,
-            image: string){
+            image: string,
+            comment: string,
+            reply: string){
             this.name = name
             this.surname = surname
             this.position = position
             this.department = department
             this.image = image
             this.studentID = studentID
+            this.comment = comment
+            this.reply = reply
         },
         resetRole() {
             this.role = ''

@@ -23,6 +23,10 @@ const profile = useRoleStore()
 const id = ref(event?.value?.id)
 const router = useRouter()
 
+function editing(){
+  localStorage.setItem("edit","true")
+}
+
 </script>
 
 <template>
@@ -46,6 +50,16 @@ const router = useRouter()
         </div>
       </div>
       <div class="mt-5 flex lg:ml-4 lg:mt-0">
+        <span class="hidden sm:block" v-if="profile.name == event?.name">
+          <a>
+            <button type="button" @click="editing"
+            class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+            <PencilIcon class="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400" aria-hidden="true" />
+            Edit
+          </button>
+          </a>
+          
+        </span>
         <span class="hidden sm:block" v-if="profile.role=='teacher'">
           <Router-link :to="{ name: 'event-edit', params: { id } }">
             <button type="button"
