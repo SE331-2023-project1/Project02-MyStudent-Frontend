@@ -23,17 +23,10 @@ function edit(){
 
 
   axios({
-        method: 'POST',
+        method: 'PUT',
         url: 'http://localhost:8080/users',
         data: {
-            username: studentID.value,
-            studentID: studentID.value,
-            password: password.value,
-            name: name.value,
-            surname: surname.value,
-            image: image.value,
-            department: department.value,
-            role: "student"
+            comment: comment
         }
     })
 

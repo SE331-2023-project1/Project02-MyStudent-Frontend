@@ -32,23 +32,21 @@ const image = ref('')
 const department = ref('')
 
 const useEdit = localStorage.getItem("edit")
+const lastparam = window.location.pathname.split("/").pop()
 
 function updateReply(this: any) {
-  axios.put('http://localhost:8080/update/1', {
+  axios.put('http://localhost:8080/update/'+lastparam, {
     name: name.value,
     surname: surname.value,
     studentID: studentID.value,
     department: department.value,
     reply: ""
   })
-  // axios({
-  //       method: 'PUT',
-  //       url: 'http://localhost:8080/update/1',
-  //       data: {
-  //           id: "1",
-  //           reply: "I can update"
-  //       }
-  //   })
+}
+function updateComment(this: any) {
+  axios.put('http://localhost:8080/update/'+lastparam, {
+    comment: comment.value
+  })
 }
 
 </script>
@@ -137,11 +135,23 @@ function updateReply(this: any) {
             <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ event.position + " " +
               event.advisorName }} {{
-    event.advisorSurname }}</dd>
+              event.advisorSurname }}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Comment</dt>
-            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{ event.comment }}</dd>
+            <dd class="mt-1 text-sm leading-6 text-red-400 sm:col-span-2 sm:mt-0">{{ event.comment == null || "" ? "No Comment Yet" :
+             event.comment 
+            }}
+              <form v-if="studentProfile.role == 'teacher'" class="" @submit.prevent="updateComment" style="margin-top: 20px; margin-left: 100px;">
+                <input
+                  class=" ml-24 w-80 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-last-name" type="text" placeholder="New Comment" v-model="comment">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-20 mb-10"
+                  type="submit">
+                  Edit Comment
+                </button>
+              </form>
+            </dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="text-sm font-medium leading-6 text-gray-900">Reply</dt>
