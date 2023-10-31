@@ -9,23 +9,33 @@ import router from '@/router';
 import { onBeforeRouteUpdate } from 'vue-router';
 import { useEventStore } from '@/stores/event';
 import { useMessageStore } from '../stores/message';
-import { profile } from 'console';
+import { error, profile } from 'console';
 import { useRoleStore } from '../stores/role';
 
 const advisor = ref('')
 const postDesc = ref('')
 const postFile = ref('')
 const roleProfile = useRoleStore()
+const file = ref('')
 
 const id = ref('')
 
 const store = useMessageStore()
 
+// function onFileChange(e) {
+//       var files = e.target.files || e.dataTransfer.files;
+    
+//     }
+
 
 function sendFeed(this: any) {
-    let formData = new FormData();
-    // formData.append("file", file);
 
+    let formData = new FormData();
+formData.append('file', file.value);
+
+    // let formData = new FormData();
+    // formData.append("file", file);
+    // this.selectedFile = this.$refs.file.files[0];
     axios.post('http://localhost:8080/uploadFile',
         formData, {
         headers: {
@@ -53,6 +63,7 @@ function sendFeed(this: any) {
                     Teacher name
                 </label>
                 <input
+                ref="file"
                     class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-password" type="text" placeholder="Input name" v-model="advisor">
                 <p class="text-gray-600 text-xs italic">Input your name</p>
@@ -75,7 +86,7 @@ function sendFeed(this: any) {
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-link">
                     Upload file
                 </label>
-                <input id="file" type="file">
+                <input id="file" type="file" @change="onFileChange()">
                 <p class="text-gray-600 text-xs italic">Input the file only</p>
             </div>
         </div>
