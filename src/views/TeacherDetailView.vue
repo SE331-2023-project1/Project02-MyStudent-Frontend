@@ -39,12 +39,11 @@ function updateTeacherForm(this: any) {
     const testto = window.location.pathname.split("/").pop()
     axios({
         method: 'PUT',
-        url: 'http://localhost:8080/teachers/' + testto,
+        url: 'http://localhost:8080/updateTeacher/' + testto,
         data: {
             id: id.value,
             name: teacherName.value,
             surname: teacherSurname.value,
-            image: teacherimgLink.value,
             position: teacherAcademicPosition.value,
             department: teacherDepartment.value,
         }
