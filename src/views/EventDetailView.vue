@@ -24,6 +24,7 @@ const id = ref(event?.value?.id)
 const studentProfile = useRoleStore()
 const store2 = useCommentStore()
 const { comment } = storeToRefs(store2)
+const newReply = ref('')
 
 const name = ref('')
 const surname = ref('')
@@ -36,11 +37,7 @@ const lastparam = window.location.pathname.split("/").pop()
 
 function updateReply(this: any) {
   axios.put('http://localhost:8080/update/'+lastparam, {
-    name: name.value,
-    surname: surname.value,
-    studentID: studentID.value,
-    department: department.value,
-    reply: ""
+    reply: newReply.value
   })
 }
 function updateComment(this: any) {
