@@ -35,6 +35,15 @@ const department = ref('')
 const useEdit = localStorage.getItem("edit")
 const lastparam = window.location.pathname.split("/").pop()
 
+function updateProfile(this: any) {
+  axios.put('http://localhost:8080/update/'+lastparam, {
+    name: name.value,
+    surname: surname.value,
+    department: department.value,
+    studentID: studentID.value
+
+  })
+}
 function updateReply(this: any) {
   axios.put('http://localhost:8080/update/'+lastparam, {
     reply: newReply.value
@@ -73,7 +82,7 @@ function updateComment(this: any) {
           </div>
         </dl>
       </div>
-      <form v-if="studentProfile.name == event.name" class="" @submit.prevent="updateReply" style="">
+      <form v-if="studentProfile.name == event.name" class="" @submit.prevent="updateProfile" style="">
         <hr style="margin-bottom: 40px;">Edit Profile
         <div class="mt-6 border-t border-gray-100">
           <dl class="divide-y divide-gray-100">
